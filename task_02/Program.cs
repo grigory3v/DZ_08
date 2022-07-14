@@ -1,24 +1,45 @@
 ﻿/*
-Задача 27: Напишите программу, которая принимает на вход число и выдаёт сумму цифр в числе.
+Задача 36: Задайте одномерный массив, заполненный случайными числами. Найдите сумму элементов, стоящих на нечётных позициях.
 
-452 -> 11
+[3, 7, 23, 12] -> 19
 
-82 -> 10
-
-9012 -> 12
+[-4, -6, 89, 6] -> 0
 */
 
-int Sum_digits_number()
+namespace Task_02
 {
-    int sum = 0;
-    Console.WriteLine("Введите число");
-    int namber = Convert.ToInt32(Console.ReadLine());
-    string str = Convert.ToString(namber);
-    for (int i = 0; i < str.Length; i++)
+    class Program
     {
-        sum += Convert.ToInt32(str[i].ToString());
+        public static void Main()
+        {
+            Console.WriteLine($" Введите длину массива");
+            int size = Convert.ToInt32(Console.ReadLine());
+            int [] array = new int[size];
+            Console.Write($"одномерный массив, заполненный случайными числами = [ ");
+            for ( int i = 0; i < array.Length; i++ )
+            {   
+                array[i] = new Random().Next(-100, 100);
+                Console.Write($"{array[i]} ");
+            }
+            Console.Write($"]");
+            Console.WriteLine();
+            PrintArray(array);   
+
+        }
+        public static void PrintArray (int[] array)
+        {
+            int length = array.Length;
+            int count = 0;
+            for (int i = 0; i < length; i++ )
+            {
+                if ( i % 2 == 0 )
+                {
+                    count = count + array[i];    
+                }
+            }
+            Console.Write($" суммa элементов, стоящих на нечётных позициях = {count} ");
+            Console.WriteLine();
+        }
+
     }
-    return sum;
 }
-int sum = Sum_digits_number();
-Console.WriteLine($"сумма цифр в числе = {sum}");
