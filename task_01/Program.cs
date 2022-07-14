@@ -1,25 +1,43 @@
 ﻿/* 
-Урок 4. Функции продолжение
-Задача 25: Напишите цикл, который принимает на вход два числа (A и B) и возводит число A в натуральную степень B.
+Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами. Напишите программу, которая покажет количество чётных чисел в массиве.
 
-3, 5 -> 243 (3⁵)
-
-2, 4 -> 16 
+[345, 897, 568, 234] -> 2
 */
 
-void Degree(int number, int degree)
+namespace Task_01
 {
-    int number_to_the_power = 1;
-    for (int i = 0; i < degree; i++)
+    class Program
     {
-        number_to_the_power = number_to_the_power * number;
+        public static void Main()
+        {
+            Console.WriteLine($" Введите длину массива");
+            int size = Convert.ToInt32(Console.ReadLine());
+            int [] array = new int[size];
+            Console.Write($"массив заполненный случайными положительными трёхзначными числами = [ ");
+            for ( int i = 0; i < array.Length; i++ )
+            {   
+                array[i] = new Random().Next(100, 1000);
+                Console.Write($"{array[i]} ");
+            }
+            Console.Write($"]");
+            Console.WriteLine();
+            PrintArray(array);   
+
+        }
+        public static void PrintArray (int[] array)
+        {
+            int length = array.Length;
+            int count = 0;
+            for (int i = 0; i < length; i++ )
+            {
+                if ( array[i] % 2 == 0 )
+                {
+                    count++;    
+                }
+            }
+            Console.Write($" количество чётных чисел в массиве = {count} ");
+            Console.WriteLine();
+        }
+
     }
-    Console.WriteLine($"число {number} в степени {degree} равно {number_to_the_power}");
 }
-
-Console.WriteLine("Введите число");
-int namber = Convert.ToInt32(Console.ReadLine());
-
-Console.WriteLine("Введите степень");
-int degree = Convert.ToInt32(Console.ReadLine());
-Degree(number: namber, degree: degree);
