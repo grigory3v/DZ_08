@@ -1,7 +1,11 @@
 ﻿/*
-Задача 38: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
+Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
 
-[3 7 22 2 78] -> 76
+Например, задан массив:
+1 4 7 2
+5 9 2 3
+8 4 2 4
+Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 */
 namespace Task_03
 {
@@ -9,43 +13,22 @@ namespace Task_03
     {
         public static void Main()
         {
-
-            Console.WriteLine($" Введите длину массива");
-            int size = Convert.ToInt32(Console.ReadLine());
-            double [] array = new double[size];
-
-            Console.Write($"массив вещественных чисел = [ ");
-            for ( int i = 0; i < array.Length; i++ )
-            {   
-                array[i] = new Random().Next(-10, 10);
-
-                Console.Write($"{array[i]} ");
-            }
-            Console.Write($"]");
-            Console.WriteLine();
-            PrintArray(array);   
-
-        }
-        public static void PrintArray (double[] array)
-        {
-            int length = array.Length;
-            double min = array[0];
-            double max = array[0];
-            double min_max = 0;
-            for (int i = 0; i < length; i++ )
+            double[,] array = new double[,]
             {
-                if ( array[i] <= min )
+                {1, 4 ,7 ,2},
+                {5 ,9 ,2 ,3},
+                {8 ,4 ,2 ,4}
+            };
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                double average = 0;
+                for (int i = 0; i < array.GetLength(0); i++)
                 {
-                    min = array[i];
-                }  
-                if  ( array[i] >= max ) 
-                {
-                max = array[i];
+                    average = average + array[i, j];
                 }
+                average = average / array.GetLength(0);
+                Console.WriteLine($" a ={Math.Round(average, 1)}");
             }
-            min_max = max - min;
-            Console.Write($" разница между максимальным и минимальным элементом массива = {min_max} ");
         }
-
     }
 }
